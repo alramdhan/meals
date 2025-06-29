@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/widgets/mail_item_trait.dart';
-import 'package:meals/widgets/meal_detail.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({
     super.key,
     required this.meal,
+    required this.onSelectMeal,
   });
 
   final Meal meal;
+  final void Function(Meal meal) onSelectMeal;
 
   String get complexityText => meal.complexity.name[0].toUpperCase() + meal.complexity.name.substring(1);
 
   String get affordabilityText => meal.affordability.name[0].toUpperCase() + meal.affordability.name.substring(1);
-
-  void _onSelectMeal(BuildContext context, Meal meal) {
-    Navigator.push(context,
-      MaterialPageRoute(builder: (_) => MealDetail(meal: meal))
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +28,7 @@ class MealItem extends StatelessWidget {
       elevation: 8,
       child: InkWell(
         onTap: () {
-          _onSelectMeal(context, meal);
+          onSelectMeal(meal);
         },
         child: Stack(
           children: [
