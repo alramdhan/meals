@@ -80,7 +80,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
           end: const Offset(0, 0)
         ).animate(
           CurvedAnimation(
-            parent: _animationController, curve: Curves.easeInOut
+            parent: _animationController, curve: Curves.fastEaseInToSlowEaseOut
           )
         ),
         child: child
